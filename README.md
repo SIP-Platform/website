@@ -1,6 +1,6 @@
 # VisionGuard - نحمي أبطالك قبل الإصابة
 
-![VisionGuard Logo](../images/logo.png)
+![VisionGuard Logo](../visionguard_website/images/logo.png)
 
 ## نظرة عامة
 
