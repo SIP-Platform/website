@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - VisionGuard</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="dashboard-sidebar">
+        <div class="sidebar-header">
+            <img src="../images/logo.png" alt="VisionGuard Logo" class="sidebar-logo">
+        </div>
+        
+        <div class="sidebar-nav">
+            <a href="../index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>الرئيسية</span>
+            </a>
+            <a href="dashboard.html" class="nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>لوحة التحكم</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>اللاعبين</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-heartbeat"></i>
+                <span>المؤشرات الحيوية</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-dumbbell"></i>
+                <span>التدريبات</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-file-medical"></i>
+                <span>التقارير الطبية</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>الإشعارات</span>
+            </a>
+        </div>
+        
+        <div class="team-section">
+            <h3 class="team-title">فريق التطوير</h3>
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="team-member-avatar">ر</div>
+                    <div class="team-member-info">
+                        <div class="team-member-name">ربى أحمد</div>
+                        <div class="team-member-role">مطورة</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-avatar">و</div>
+                    <div class="team-member-info">
+                        <div class="team-member-name">وعد محمد</div>
+                        <div class="team-member-role">مصممة</div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-avatar">ع</div>
+                    <div class="team-member-info">
+                        <div class="team-member-name">عامر المطيري</div>
+                        <div class="team-member-role">محلل بيانات</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            VisionGuard © 2025
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="dashboard-content">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="dashboard-title">
+                <h1>لوحة تحليل وتنبؤ إصابات اللاعبين</h1>
+            </div>
+            
+            <div class="dashboard-actions">
+                <button class="btn btn-primary refresh-btn">
+                    <i class="fas fa-sync-alt"></i>
+                    تحديث البيانات
+                </button>
+                <button class="btn btn-secondary export-btn">
+                    <i class="fas fa-download"></i>
+                    تصدير التقرير
+                </button>
+            </div>
+        </div>
+        
+        <!-- Filters -->
+        <div class="dashboard-filters">
+            <div class="filter-group">
+                <label>الفترة الزمنية:</label>
+                <select>
+                    <option>آخر 7 أيام</option>
+                    <option>آخر 14 يوم</option>
+                    <option>آخر 30 يوم</option>
+                    <option>آخر 90 يوم</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>الفريق:</label>
+                <select>
+                    <option>جميع الفرق</option>
+                    <option>الفريق الأول</option>
+                    <option>فريق الشباب</option>
+                    <option>فريق الناشئين</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Metrics -->
+        <div class="metrics-row">
+            <div class="metric-card players">
+                <div class="metric-title">لاعبين تحت المراقبة</div>
+                <div class="metric-value">28</div>
+                <div class="metric-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    3 منذ الأسبوع الماضي
+                </div>
+                <div class="metric-chart" id="playersChart"></div>
+            </div>
+            
+            <div class="metric-card avoided">
+                <div class="metric-title">إصابات تم تجنبها</div>
+                <div class="metric-value">12</div>
+                <div class="metric-change positive">
+                    <i class="fas fa-arrow-up"></i>
+                    4 منذ الأسبوع الماضي
+                </div>
+                <div class="metric-chart" id="avoidedChart"></div>
+            </div>
+            
+            <div class="metric-card expected">
+                <div class="metric-title">إصابات متوقعة</div>
+                <div class="metric-value">3</div>
+                <div class="metric-change negative">
+                    <i class="fas fa-arrow-up"></i>
+                    1 منذ الأسبوع الماضي
+                </div>
+                <div class="metric-chart" id="expectedChart"></div>
+            </div>
+            
+            <div class="metric-card risk">
+                <div class="metric-title">مؤشر خطر الإصابة</div>
+                <div class="metric-value">27%</div>
+                <div class="metric-change negative">
+                    <i class="fas fa-arrow-up"></i>
+                    5% منذ الأسبوع الماضي
+                </div>
+                <div class="metric-chart" id="riskChart"></div>
+            </div>
+        </div>
+        
+        <!-- Main Charts -->
+        <div class="row">
+            <div class="col">
+                <!-- Risk Time Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">تحليل مؤشر خطر الإصابة على مدار الوقت</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="riskTimeChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <!-- Activity Feed -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">الأنشطة والتنبيهات</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div class="activity-feed">
+                            <div class="activity-item">
+                                <div class="activity-icon danger">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-text">
+                                        تم اكتشاف مؤشر خطر مرتفع (78%) لدى محمد عبدالله في منطقة الركبة اليمنى
+                                    </div>
+                                    <div class="activity-meta">
+                                        <span>منذ 35 دقيقة</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon warning">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-text">
+                                        ارتفاع في مؤشر خطر الإصابة العام للفريق بنسبة 5% مقارنة بالأسبوع الماضي
+                                    </div>
+                                    <div class="activity-meta">
+                                        <span>منذ ساعتين</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon info">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-text">
+                                        تم تحديث بيانات المؤشرات الحيوية لجميع اللاعبين
+                                    </div>
+                                    <div class="activity-meta">
+                                        <span>منذ 3 ساعات</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon success">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-text">
+                                        تم تجنب 4 إصابات محتملة خلال الأسبوع الماضي بفضل الإجراءات الوقائية
+                                    </div>
+                                    <div class="activity-meta">
+                                        <span>منذ يوم واحد</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <!-- Recommendations -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">التوصيات والإجراءات</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div class="recommendations">
+                            <div class="recommendation-item high">
+                                <div class="recommendation-header">
+                                    <div class="recommendation-title">تخفيف حمل التدريب لمحمد عبدالله</div>
+                                    <div class="recommendation-priority high">عالي</div>
+                                </div>
+                                <div class="recommendation-text">
+                                    يوصى بتخفيض حمل التدريب بنسبة 40% لمدة 3 أيام مع التركيز على تمارين التقوية الخاصة بالركبة اليمنى وتجنب تمارين القفز والتسارع العالي.
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn btn-primary">تطبيق</button>
+                                    <button class="btn btn-secondary">تأجيل</button>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-item medium">
+                                <div class="recommendation-header">
+                                    <div class="recommendation-title">جلسة علاج طبيعي لخالد سعيد</div>
+                                    <div class="recommendation-priority medium">متوسط</div>
+                                </div>
+                                <div class="recommendation-text">
+                                    يوصى بإجراء جلسة علاج طبيعي مكثفة للكاحل الأيسر مع تطبيق بروتوكول RICE (راحة، ثلج، ضغط، رفع) لمدة 48 ساعة.
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn btn-primary">تطبيق</button>
+                                    <button class="btn btn-secondary">تأجيل</button>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-item medium">
+                                <div class="recommendation-header">
+                                    <div class="recommendation-title">تعديل برنامج التدريب الأسبوعي</div>
+                                    <div class="recommendation-priority medium">متوسط</div>
+                                </div>
+                                <div class="recommendation-text">
+                                    يوصى بتعديل برنامج التدريب الأسبوعي للفريق لتقليل الحمل التراكمي مع إضافة يوم راحة إضافي وزيادة فترات الاستشفاء بين التمارين عالية الكثافة.
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn btn-primary">تطبيق</button>
+                                    <button class="btn btn-secondary">تأجيل</button>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-item low">
+                                <div class="recommendation-header">
+                                    <div class="recommendation-title">مراقبة مكثفة لجودة النوم</div>
+                                    <div class="recommendation-priority low">منخفض</div>
+                                </div>
+                                <div class="recommendation-text">
+                                    يوصى بمراقبة مكثفة لجودة النوم لجميع اللاعبين مع التركيز على تحسين روتين ما قبل النوم وتقليل استخدام الأجهزة الإلكترونية قبل النوم بساعتين.
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn btn-primary">تطبيق</button>
+                                    <button class="btn btn-secondary">تأجيل</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <!-- Injury Types Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">توزيع أنواع الإصابات المتوقعة</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="injuryTypesChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <!-- Body Map Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مناطق الإصابة الأكثر شيوعاً</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="bodyMapChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Health -->
+        <h2>صحة النظام</h2>
+        <div class="system-health">
+            <div class="health-card">
+                <div class="health-icon api">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="health-title">واجهة API</div>
+                <div class="health-value excellent">99%</div>
+                <div class="health-status">مستقرة</div>
+            </div>
+            
+            <div class="health-card">
+                <div class="health-icon prediction">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="health-title">نظام التنبؤ</div>
+                <div class="health-value good">85%</div>
+                <div class="health-status">تحديث متاح</div>
+            </div>
+            
+            <div class="health-card">
+                <div class="health-icon database">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="health-title">قاعدة البيانات</div>
+                <div class="health-value excellent">100%</div>
+                <div class="health-status">متزامنة</div>
+            </div>
+            
+            <div class="health-card">
+                <div class="health-icon sensors">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="health-title">أجهزة الاستشعار</div>
+                <div class="health-value excellent">98%</div>
+                <div class="health-status">28/30 متصل</div>
+            </div>
+        </div>
+        
+        <!-- Vital Signs -->
+        <h2>المؤشرات الحيوية للاعبين</h2>
+        <div class="vital-signs">
+            <div class="vital-card heart-rate">
+                <div class="vital-title">معدل ضربات القلب</div>
+                <div class="vital-chart" id="heartRateChart"></div>
+                <div class="vital-value">72 نبضة/دقيقة</div>
+                <div class="vital-status good">طبيعي</div>
+            </div>
+            
+            <div class="vital-card stress">
+                <div class="vital-title">مستوى الإجهاد</div>
+                <div class="vital-chart" id="stressChart"></div>
+                <div class="vital-value">45%</div>
+                <div class="vital-status warning">متوسط</div>
+            </div>
+            
+            <div class="vital-card sleep">
+                <div class="vital-title">جودة النوم</div>
+                <div class="vital-chart" id="sleepChart"></div>
+                <div class="vital-value">68%</div>
+                <div class="vital-status warning">متوسط</div>
+            </div>
+            
+            <div class="vital-card recovery">
+                <div class="vital-title">مؤشر الاستشفاء</div>
+                <div class="vital-chart" id="recoveryChart"></div>
+                <div class="vital-value">75%</div>
+                <div class="vital-status good">جيد</div>
+            </div>
+        </div>
+        
+        <!-- Training Load -->
+        <h2>تحليل حمل التدريب</h2>
+        <div class="training-load">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3 class="chart-title">حمل التدريب الأسبوعي</h3>
+                    <div class="chart-actions">
+                        <button class="btn btn-icon btn-secondary">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-body">
+                    <div id="trainingLoadChart" style="width: 100%; height: 100%;"></div>
+                </div>
+            </div>
+            
+            <div class="load-metrics">
+                <div class="load-metric">
+                    <div class="load-metric-title">نسبة الحادة:المزمنة</div>
+                    <div class="load-metric-value">1.2</div>
+                    <div class="load-metric-chart" id="acuteChronicRatioChart"></div>
+                </div>
+                
+                <div class="load-metric">
+                    <div class="load-metric-title">مؤشر التعب</div>
+                    <div class="load-metric-value">320</div>
+                    <div class="load-metric-chart" id="fatigueIndexChart"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Players at Risk -->
+        <h2>اللاعبين الأكثر عرضة للإصابة</h2>
+        <div class="player-cards">
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">م</div>
+                    <div class="player-info">
+                        <div class="player-name">محمد عبدالله</div>
+                        <div class="player-position">مهاجم</div>
+                    </div>
+                    <div class="player-risk">
+                        <div class="risk-label">مؤشر الخطر</div>
+                        <div class="risk-value high">78%</div>
+                    </div>
+                </div>
+                <div class="player-body">
+                    <div class="player-stats">
+                        <div class="player-stat">
+                            <div class="stat-label">العمر</div>
+                            <div class="stat-value">26 سنة</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">الوزن</div>
+                            <div class="stat-value">78 كجم</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">الطول</div>
+                            <div class="stat-value">182 سم</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">تاريخ الإصابات</div>
+                            <div class="stat-value">3 إصابات</div>
+                        </div>
+                    </div>
+                    
+                    <div class="player-risk-area">
+                        <div class="risk-area-label">منطقة الخطر</div>
+                        <div class="risk-area-value knee">الركبة اليمنى</div>
+                    </div>
+                    
+                    <div class="player-actions">
+                        <button class="btn btn-primary">عرض تفصيلي</button>
+                        <button class="btn btn-secondary">توصية</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">خ</div>
+                    <div class="player-info">
+                        <div class="player-name">خالد سعيد</div>
+                        <div class="player-position">وسط</div>
+                    </div>
+                    <div class="player-risk">
+                        <div class="risk-label">مؤشر الخطر</div>
+                        <div class="risk-value medium">52%</div>
+                    </div>
+                </div>
+                <div class="player-body">
+                    <div class="player-stats">
+                        <div class="player-stat">
+                            <div class="stat-label">العمر</div>
+                            <div class="stat-value">24 سنة</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">الوزن</div>
+                            <div class="stat-value">75 كجم</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">الطول</div>
+                            <div class="stat-value">178 سم</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">تاريخ الإصابات</div>
+                            <div class="stat-value">2 إصابات</div>
+                        </div>
+                    </div>
+                    
+                    <div class="player-risk-area">
+                        <div class="risk-area-label">منطقة الخطر</div>
+                        <div class="risk-area-value ankle">كاحل أيسر</div>
+                    </div>
+                    
+                    <div class="player-actions">
+                        <button class="btn btn-primary">عرض تفصيلي</button>
+                        <button class="btn btn-secondary">توصية</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-avatar">ف</div>
+                    <div class="player-info">
+                        <div class="player-name">فهد العتيبي</div>
+                        <div class="player-position">مدافع</div>
+                    </div>
+                    <div class="player-risk">
+                        <div class="risk-label">مؤشر الخطر</div>
+                        <div class="risk-value medium">45%</div>
+                    </div>
+                </div>
+                <div class="player-body">
+                    <div class="player-stats">
+                        <div class="player-stat">
+                            <div class="stat-label">العمر</div>
+                            <div class="stat-value">28 سنة</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">الوزن</div>
+                            <div class="stat-value">82 كجم</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">الطول</div>
+                            <div class="stat-value">185 سم</div>
+                        </div>
+                        <div class="player-stat">
+                            <div class="stat-label">تاريخ الإصابات</div>
+                            <div class="stat-value">1 إصابة</div>
+                        </div>
+                    </div>
+                    
+                    <div class="player-risk-area">
+                        <div class="risk-area-label">منطقة الخطر</div>
+                        <div class="risk-area-value hamstring">عضلات الفخذ</div>
+                    </div>
+                    
+                    <div class="player-actions">
+                        <button class="btn btn-primary">عرض تفصيلي</button>
+                        <button class="btn btn-secondary">توصية</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Advanced Analytics Section -->
+        <h2>تحليلات متقدمة</h2>
+        <div class="row">
+            <div class="col">
+                <!-- Injury Prediction Model Performance -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">أداء نموذج التنبؤ بالإصابات</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="modelPerformanceChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <!-- Risk Factors Contribution -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مساهمة عوامل الخطر</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="riskFactorsChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <!-- Team Comparison -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مقارنة مؤشرات الفرق</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="teamComparisonChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seasonal Analysis -->
+        <h2>تحليل موسمي</h2>
+        <div class="row">
+            <div class="col">
+                <!-- Seasonal Injury Trends -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">اتجاهات الإصابات الموسمية</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="seasonalTrendsChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <!-- Match Density Impact -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">تأثير كثافة المباريات</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="matchDensityChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recovery Analysis -->
+        <h2>تحليل الاستشفاء</h2>
+        <div class="row">
+            <div class="col">
+                <!-- Recovery Metrics -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مؤشرات الاستشفاء</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="recoveryMetricsChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <!-- Sleep Quality Impact -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">تأثير جودة النوم</h3>
+                        <div class="chart-actions">
+                            <button class="btn btn-icon btn-secondary">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <div id="sleepQualityChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Custom JS -->
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionGuard - نحمي أبطالك قبل الإصابة</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="VisionGuard Logo" class="logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="pages/dashboard.html"><i class="fas fa-chart-line"></i> لوحة التحكم</a></li>
+                    <li><a href="#features"><i class="fas fa-shield-alt"></i> المميزات</a></li>
+                    <li><a href="#data"><i class="fas fa-database"></i> البيانات والتحليلات</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-comment-alt"></i> آراء المستخدمين</a></li>
+                    <li><a href="#team"><i class="fas fa-users"></i> فريق العمل</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary">تجربة مجانية</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- قسم الهيرو -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">نحمي أبطالك قبل الإصابة</h1>
+                <h2 class="hero-subtitle">بذكاء ينقذ المواسم</h2>
+                <p class="hero-description">
+                    منصة VisionGuard تستخدم الذكاء الاصطناعي والتعلم الآلي للتنبؤ بإصابات اللاعبين قبل حدوثها، مما يساعد الأندية والمدربين على اتخاذ إجراءات وقائية تحمي اللاعبين وتحافظ على أدائهم.
+                </p>
+                <div class="cta-buttons">
+                    <a href="pages/dashboard.html" class="btn btn-primary btn-lg">استكشف لوحة التحكم <i class="fas fa-arrow-left"></i></a>
+                    <a href="#features" class="btn btn-outline btn-lg">تعرف على المميزات</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="dashboard-preview">
+                    <div class="dashboard-header">
+                        <h3>لوحة تحليل وتنبؤ إصابات اللاعبين</h3>
+                    </div>
+                    <div class="dashboard-content">
+                        <canvas id="previewChart"></canvas>
+                    </div>
+                    <div class="dashboard-footer">
+                        <a href="pages/dashboard.html" class="dashboard-link">عرض اللوحة الكاملة <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الإحصائيات -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value">40%</h3>
+                        <p class="stat-label">تقليل نسبة الإصابات</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value">500+</h3>
+                        <p class="stat-label">لاعب تحت الحماية</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value">85%</h3>
+                        <p class="stat-label">دقة التنبؤ</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value">72</h3>
+                        <p class="stat-label">ساعة تنبؤ مسبق</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المميزات -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">مميزات <span>VisionGuard</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">تنبؤ ذكي بالإصابات</h3>
+                    <p class="feature-description">
+                        خوارزميات ذكاء اصطناعي متقدمة تحلل بيانات اللاعبين وتتنبأ بمخاطر الإصابة قبل حدوثها بدقة تصل إلى 85%.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="feature-title">مراقبة المؤشرات الحيوية</h3>
+                    <p class="feature-description">
+                        متابعة مستمرة للمؤشرات الحيوية للاعبين مثل معدل ضربات القلب، مستويات التعب، وجودة النوم لتحديد علامات الخطر.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3 class="feature-title">تحليل حمل التدريب</h3>
+                    <p class="feature-description">
+                        قياس وتحليل أحمال التدريب ونسبة الحادة:المزمنة لضمان التوازن المثالي بين التحدي والراحة.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="feature-title">تحليل حركة اللاعبين</h3>
+                    <p class="feature-description">
+                        تقنيات رؤية حاسوبية متطورة تحلل أنماط حركة اللاعبين لاكتشاف التغيرات الدقيقة التي قد تشير إلى خطر الإصابة.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="feature-title">توصيات مخصصة</h3>
+                    <p class="feature-description">
+                        توصيات عملية مخصصة لكل لاعب بناءً على بياناته الفردية لتقليل مخاطر الإصابة وتحسين الأداء.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">تطبيقات متكاملة</h3>
+                    <p class="feature-description">
+                        تطبيقات للهواتف الذكية والأجهزة اللوحية تتيح للمدربين والأطباء متابعة حالة اللاعبين في أي وقت ومن أي مكان.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم البيانات والتحليلات -->
+    <section id="data" class="data-section">
+        <div class="container">
+            <h2 class="section-title">البيانات <span>والتحليلات</span></h2>
+            <div class="data-grid">
+                <div class="data-card">
+                    <div class="data-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="data-title">أجهزة ذكية على أجسام اللاعبين</h3>
+                    <p class="data-description">
+                        أجهزة استشعار متطورة تجمع بيانات حيوية وحركية من اللاعبين أثناء التدريبات والمباريات.
+                    </p>
+                </div>
+                <div class="data-card">
+                    <div class="data-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="data-title">فيديوهات من التدريبات والمباريات</h3>
+                    <p class="data-description">
+                        تحليل متقدم للفيديو باستخدام تقنيات الرؤية الحاسوبية لتتبع حركات اللاعبين وتحديد الأنماط غير الطبيعية.
+                    </p>
+                </div>
+                <div class="data-card">
+                    <div class="data-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3 class="data-title">تقارير طبية وسجلات إصابات</h3>
+                    <p class="data-description">
+                        تحليل السجلات الطبية وتاريخ الإصابات لتحديد عوامل الخطر المحتملة وأنماط الإصابات المتكررة.
+                    </p>
+                </div>
+                <div class="data-card">
+                    <div class="data-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="data-title">بيانات أداء وإحصائيات المباريات</h3>
+                    <p class="data-description">
+                        تحليل إحصائيات الأداء خلال المباريات والتدريبات لتحديد علامات التعب أو انخفاض الأداء.
+                    </p>
+                </div>
+            </div>
+            <div class="data-types">
+                <h3 class="data-subtitle">أنواع البيانات</h3>
+                <ul class="data-types-list">
+                    <li><i class="fas fa-file-medical"></i> بيانات طبية وتدريبية (فحوص)</li>
+                    <li><i class="fas fa-video"></i> فيديوهات وتمارين (غير مصنفة)</li>
+                    <li><i class="fas fa-heartbeat"></i> بيانات فورية من wearables (نبض - عضلات - نوم)</li>
+                    <li><i class="fas fa-map-marker-alt"></i> بيانات GPS وتتبع الحركة</li>
+                </ul>
+            </div>
+            <div class="technologies">
+                <h3 class="data-subtitle">التقنيات المستخدمة</h3>
+                <ul class="technologies-list">
+                    <li><i class="fab fa-python"></i> Python (pandas, NumPy) لتحليل البيانات</li>
+                    <li><i class="fas fa-robot"></i> خوارزميات تعلم آلي للتنبؤ</li>
+                    <li><i class="fas fa-camera"></i> Computer Vision لتحليل الحركة</li>
+                    <li><i class="fas fa-mobile-alt"></i> تطبيقات للأجهزة المحمولة للمتابعة</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم آراء المستخدمين -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">آراء <span>المستخدمين</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <span>CO</span>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">أحمد محمد</h3>
+                            <p class="testimonial-position">مدرب كرة قدم</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"ساعدتنا منصة VisionGuard على تقليل الإصابات بنسبة 40% خلال الموسم الماضي، مما أدى إلى تحسن كبير في أداء الفريق وتقليل التكاليف الطبية."</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <span>DO</span>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">د. خالد العمري</h3>
+                            <p class="testimonial-position">طبيب رياضي</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"كطبيب محترف، منحتني المنصة فهماً أفضل لجسدي وكيفية تجنب الإصابات. أشعر بالأمان والثقة أكثر خلال التدريبات والمباريات."</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <span>PL</span>
+                        </div>
+                        <div class="testimonial-info">
+                            <h3 class="testimonial-name">فيصل</h3>
+                            <p class="testimonial-position">لاعب كرة قدم محترف</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"أكثر من 500 نادي رياضي يستخدمون VisionGuard لحماية لاعبيهم وتحسين أدائهم"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم فريق العمل -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <h2 class="section-title">فريق <span>العمل</span></h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <span>RA</span>
+                    </div>
+                    <h3 class="team-name">ربى أحمد</h3>
+                    <p class="team-position">مطورة برمجيات</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <span>WM</span>
+                    </div>
+                    <h3 class="team-name">وعد محمد</h3>
+                    <p class="team-position">مهندسة بيانات</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <span>AM</span>
+                    </div>
+                    <h3 class="team-name">عامر المطيري</h3>
+                    <p class="team-position">خبير ذكاء اصطناعي</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الدعوة للعمل -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">احمِ فريقك من الإصابات</h2>
+            <p class="cta-description">انضم إلى أكثر من 500 نادي رياضي يستخدمون VisionGuard لحماية لاعبيهم وتحسين أدائهم</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary btn-lg">عرض توضيحي</a>
+                <a href="#" class="btn btn-outline btn-lg">تواصل معنا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="images/logo.png" alt="VisionGuard Logo" class="footer-logo">
+                    <p class="footer-description">
+                        نحمي أبطالك قبل الإصابة بذكاء ينقذ المواسم
+                    </p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#data">البيانات والتحليلات</a></li>
+                        <li><a href="#testimonials">آراء المستخدمين</a></li>
+                        <li><a href="#team">فريق العمل</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">خدماتنا</h3>
+                    <ul class="footer-links-list">
+                        <li><a href="#">التنبؤ بالإصابات</a></li>
+                        <li><a href="#">تحليل الأداء</a></li>
+                        <li><a href="#">خطط التدريب</a></li>
+                        <li><a href="#">تقارير طبية</a></li>
+                        <li><a href="#">استشارات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-title">تواصل معنا</h3>
+                    <ul class="footer-contact-list">
+                        <li><i class="fas fa-envelope"></i> info@visionguard.com</li>
+                        <li><i class="fas fa-phone"></i> 6789 345 12 966+</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">VisionGuard © 2025 جميع الحقوق محفوظة</p>
+                <div class="footer-bottom-links">
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">الشروط والأحكام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
