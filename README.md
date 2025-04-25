@@ -1,7 +1,6 @@
 # VisionGuard - نحمي أبطالك قبل الإصابة
 
-![VisionGuard Logo](https://visionguard1.netlify.app/images/logo.png))
-
+![VisionGuard Logo](https://visionguard1.netlify.app/images/logo.png)
 ## نظرة عامة
 
 VisionGuard هي منصة متطورة تستخدم الذكاء الاصطناعي والتعلم الآلي للتنبؤ بإصابات اللاعبين قبل حدوثها. تساعد المنصة الأندية والمدربين على اتخاذ إجراءات وقائية تحمي اللاعبين وتحافظ على أدائهم، مما يؤدي إلى تقليل نسبة الإصابات وتحسين النتائج الرياضية.
